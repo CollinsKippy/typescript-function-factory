@@ -46,20 +46,19 @@ myProcessor3(myArray);
 // function displayProcessedNumber(fn: (n: number) => number): void;
 function displayProcessedNumber(
   fn: (n: number) => number
-): (greeting: string, num: number) => void {
+): (greeting: string, num: number) => string {
   return (greeting: string, myNum: number) => {
     const result = fn(myNum);
-    alert(`${greeting} ${result}`);
+    return `${greeting} ${result}`;
   };
 }
 const myFunction = displayProcessedNumber((n) => n ** 3);
 
-document.addEventListener('DOMContentLoaded', () => {
-  const btnCubed: HTMLElement = document.getElementById(
-    'btnCubed'
-  ) as HTMLElement;
+const btnCubed = document.getElementById('btnCubed') as HTMLElement;
 
-  btnCubed.addEventListener('click', (e: MouseEvent) => {
-    myFunction('Hello', 10);
-  });
+const p = document.querySelector('.result') as HTMLElement;
+let num = 0;
+
+btnCubed.addEventListener('click', (e: MouseEvent) => {
+  p.textContent = myFunction('Hello', num++);
 });
