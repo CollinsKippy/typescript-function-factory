@@ -4,7 +4,8 @@ import './style.css';
 var myArray = [1, 2, 3, 4, 5];
 
 /**
- * The processNumber function returns a function.
+ * The processNumber function returns another function that takes a
+ * numberic type and returns a numeric type.
  * Its signature/parameter is a user-defined function that process a number and returns a number.
  */
 function processNumber(fn: (n: number) => number): (num: number) => number {
@@ -20,8 +21,9 @@ console.log({ result });
 console.log({ result2 });
 
 /**
- * This function returns a function that processes arrays in manner a that the user defines.
- * The user-defined function takes a number array and must return a number array.
+ * This function returns a function that processes a number array.
+ * A user-defined function is passed in as an argument. This function
+ * takes a number array and must return a number array.
  */
 function processNumberArray(
   fn: (n: number[]) => number[]
@@ -40,3 +42,24 @@ const myProcessor3 = processNumberArray((xArr) => {
 });
 
 myProcessor3(myArray);
+
+// function displayProcessedNumber(fn: (n: number) => number): void;
+function displayProcessedNumber(
+  fn: (n: number) => number
+): (greeting: string, num: number) => void {
+  return (greeting: string, myNum: number) => {
+    const result = fn(myNum);
+    alert(`${greeting} ${result}`);
+  };
+}
+const myFunction = displayProcessedNumber((n) => n ** 3);
+
+document.addEventListener('DOMContentLoaded', () => {
+  const btnCubed: HTMLElement = document.getElementById(
+    'btnCubed'
+  ) as HTMLElement;
+
+  btnCubed.addEventListener('click', (e: MouseEvent) => {
+    myFunction('Hello', 10);
+  });
+});
