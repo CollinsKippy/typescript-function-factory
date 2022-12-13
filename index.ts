@@ -52,7 +52,7 @@ function displayProcessedNumber(
     return `${greeting} ${result}`;
   };
 }
-const myFunction = displayProcessedNumber((n) => n ** 3);
+const myCubingFunction = displayProcessedNumber((n) => n ** 3);
 
 const btnCubed = document.getElementById('btnCubed') as HTMLElement;
 
@@ -62,5 +62,5 @@ let num = 0;
 
 btnCubed.addEventListener('click', (e: MouseEvent) => {
   pCurrentNumber.textContent = `Number: ${num}`;
-  p.textContent = myFunction('Hello Cubed:', num++);
+  p.textContent = myCubingFunction('Hello Cubed:', num++);
 });
